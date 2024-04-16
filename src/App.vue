@@ -1,22 +1,20 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import { gameService } from './services/GameService.js';
 
 const appState = computed(() => AppState)
+
+onMounted(() => setInterval(() => gameService.harvestInterval(), 1000))
+onMounted(() => gameService.loadData())
 
 </script>
 
 <template>
-  <header>
-    <Navbar />
-  </header>
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer>
 </template>
 
 <style lang="scss">
